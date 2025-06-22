@@ -1,5 +1,5 @@
 /*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
+Copyright © 2025 fxckcode
 
 */
 package cmd
@@ -19,13 +19,16 @@ var (
 // encryptCmd represents the encrypt command
 var encryptCmd = &cobra.Command{
 	Use:   "encrypt",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Encrypt a password using bcrypt",
+	Long: `Encrypt a plaintext password using the bcrypt hashing algorithm.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+You can specify the password via the --password flag and optionally set the bcrypt cost (default is 11).
+
+Examples:
+  passgen encrypt -p mypassword
+  passgen encrypt --password "supersecret" --cost 12
+
+The cost defines the computational complexity of the bcrypt hashing process. Higher values are more secure but slower.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		password, err := utils.EncryptPassword(pass, cost)
 		if err != nil {

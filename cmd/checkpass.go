@@ -1,5 +1,5 @@
 /*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
+Copyright © 2025 fxckcode
 
 */
 package cmd
@@ -19,13 +19,14 @@ var (
 // checkpassCmd represents the checkpass command
 var checkpassCmd = &cobra.Command{
 	Use:   "checkpass",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Verify if a password matches a given bcrypt hash",
+	Long: `Check if a plaintext password matches a bcrypt hash.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+This is useful for verifying stored password hashes, especially in login or authentication systems.
+
+Examples:
+  passgen checkpass -p mypassword -H '$2a$11$abc...xyz'
+  passgen checkpass --password "admin123" --hash "$2b$12$abcdef..."`,
 	Run: func(cmd *cobra.Command, args []string) {
 		ok, err := utils.CheckPassword(password, hash)
 		if err != nil {
